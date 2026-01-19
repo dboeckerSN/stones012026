@@ -22,12 +22,12 @@ describe('ProductDisplay', () => {
 
   it('increasePrice should raise price by 5', () => {
     // given
-    const oldPrice = component.product.price;
+    const oldPrice = component.product().price;
 
     // when
     component.increasePrice();
 
     // then
-    expect(component.product.price).toBeCloseTo(oldPrice + 5);
+    expect(component.product().price).toBeCloseTo(oldPrice + 5);
   });
 });

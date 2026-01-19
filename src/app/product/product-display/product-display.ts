@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output} from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -8,11 +8,11 @@ import { Product } from '../product';
   styleUrl: './product-display.css',
 })
 export class ProductDisplay {
-  @Input({ required: true }) product!: Product;
-  @Output() priceChange = new EventEmitter<number>();
+  product = input.required<Product>();
+  priceChange = output<number>();
 
   increasePrice() {
-    this.product.price += 5;
-    this.priceChange.emit(this.product.price);
+    this.product().price += 5;
+    this.priceChange.emit(this.product().price);
   }
 }
