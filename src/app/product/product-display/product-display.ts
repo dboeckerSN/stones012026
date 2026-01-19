@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../product';
 
 @Component({
@@ -8,10 +8,11 @@ import { Product } from '../product';
   styleUrl: './product-display.css',
 })
 export class ProductDisplay {
-  product: Product = new Product(0, 'Grabstein Gravo', 12.56, 32.45);
+  @Input({ required: true }) product!: Product;
+  @Output() priceChange = new EventEmitter<number>();
 
   increasePrice() {
     this.product.price += 5;
-    alert('Neuer Preis: ' + this.product.price);
+    this.priceChange.emit(this.product.price);
   }
 }

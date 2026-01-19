@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductDisplay } from './product-display';
+import { Product } from '../product';
 
 describe('ProductDisplay', () => {
   let component: ProductDisplay;
@@ -11,6 +12,7 @@ describe('ProductDisplay', () => {
 
     fixture = TestBed.createComponent(ProductDisplay);
     component = fixture.componentInstance;
+    component.product = new Product(0, 'Grabstein Granit', 12.56, 32.45);
     await fixture.whenStable();
   });
 
@@ -26,6 +28,6 @@ describe('ProductDisplay', () => {
     component.increasePrice();
 
     // then
-    expect(component.product.price).toBe(oldPrice + 5);
+    expect(component.product.price).toBeCloseTo(oldPrice + 5);
   });
 });
