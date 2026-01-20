@@ -1,0 +1,15 @@
+<form [formGroup]="productForm">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Preis</mat-label>
+    <input matInput type="number" formControlName="price" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Gewicht</mat-label>
+    <input matInput type="number" formControlName="weight" />
+  </mat-form-field>
+  <button (click)="save()" matButton>Speichern</button>
+</form>
