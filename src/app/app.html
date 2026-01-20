@@ -1,4 +1,5 @@
-@for (product of products; track product.id; let isEven = $even) {
+<span>Heute ist {{ heute | date : 'fullDate' | uppercase }}</span>
+@for (product of products | slice:0:3; track product.id; let isEven = $even) {
 <div [ngClass]="{ 'even-style': isEven }">
   <stn-product-display [product]="product" (priceChange)="onPriceChange($event)" />
 </div>

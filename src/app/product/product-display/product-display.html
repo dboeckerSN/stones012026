@@ -3,7 +3,10 @@
     <li>ID: {{ product().id }}</li>
     <li id="name">Name: {{ product().name }}</li>
     @if(showPrice) {
-    <li>Preis: {{ product().price }}</li>
+    <li>Preis: {{ product().price | currency : '€' }}</li>
+    <li>Preis Netto 19%: {{ product().price | netto | currency : '€' }}</li>
+    <li>Preis Netto 7%: {{ product().price | netto : 7 | currency : '€' }}</li>
+    <li>Preis Brutto 7%: {{ product().price | netto : 7 : 'brutto' | currency : '€' }}</li>
     }
     <li>Gewicht: {{ product().weight }}</li>
   </ul>
@@ -11,6 +14,4 @@
   <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button>
   <button (click)="increasePrice()">Preis erhöhen</button>
   <button (click)="togglePrice()">Preis ein-/ausblenden</button>
-  <input type="number" #price />
-  <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button>
 </div>

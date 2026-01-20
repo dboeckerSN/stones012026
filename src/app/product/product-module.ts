@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductRoutingModule } from './product-routing-module';
 import { ProductDisplay } from './product-display/product-display';
+import { UtilsModule } from '../utils/utils-module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ProductDisplay } from './product-display/product-display';
   ],
   imports: [
     CommonModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    UtilsModule
   ],
   exports: [
     ProductDisplay
