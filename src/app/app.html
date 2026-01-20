@@ -1,1 +1,4 @@
-<stn-product-display [product]="productParent" (priceChange)="onPriceChange($event)" />
+<stn-product-display [product]="productParent" (priceChange)="onPriceChange($event)">
+  <input type="number" #price />
+  <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button>
+</stn-product-display>
