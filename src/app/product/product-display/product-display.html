@@ -10,8 +10,13 @@
     }
     <li>Gewicht: {{ product().weight }}</li>
   </ul>
-  <input type="number" #price />
-  <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button>
-  <button (click)="increasePrice()">Preis erhöhen</button>
-  <button (click)="togglePrice()">Preis ein-/ausblenden</button>
+  <mat-form-field>
+    <mat-label>Preis</mat-label>
+    <input matInput type="number" #price />
+  </mat-form-field>
+  <button type="button" matButton="elevated" (click)="changePrice(price.valueAsNumber)">
+    Preis ändern
+  </button>
+  <button type="button" matButton="elevated" (click)="togglePrice()">Preis ein-/ausblenden</button>
+  <button type="button" matButton="elevated" (click)="increasePrice()">Preis erhöhen</button>
 </div>
