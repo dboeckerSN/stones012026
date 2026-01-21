@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductList } from './product-list';
 import { provideRouter } from '@angular/router';
+import { MockProductData, ProductData } from '../product-data';
 
 describe('ProductList', () => {
   let component: ProductList;
@@ -9,7 +10,7 @@ describe('ProductList', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), { provide: ProductData, useClass: MockProductData }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductList);
@@ -19,5 +20,10 @@ describe('ProductList', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load products from productData-service', () => {
+    // given + when + then
+    expect(component.products[0].id).toBe(-1);
   });
 });
