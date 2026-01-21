@@ -3,4 +3,5 @@ form {
 }
 mat-form-field {
   margin-right: 8px;
+  width: 500px;
 }
