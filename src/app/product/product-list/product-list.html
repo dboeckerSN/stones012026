@@ -1,0 +1,5 @@
+@for (product of products; track product.id; let isEven = $even) {
+<mat-card [ngClass]="{ 'even-style': isEven }">
+  <stn-product-display [product]="product" />
+</mat-card>
+}

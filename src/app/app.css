@@ -1,8 +1,4 @@
-.even-style {
-  background-color: grey;
-}
-
-mat-card {
-    width: 350px;
-    margin-bottom: 4px;
+a {
+  color: black;
+  margin: 0 0 0 8px;
 }
