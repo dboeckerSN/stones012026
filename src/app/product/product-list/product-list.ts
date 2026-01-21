@@ -9,5 +9,5 @@ import { ProductData } from '../product-data';
   styleUrl: './product-list.css',
 })
 export class ProductList {
-  products: Product[] = inject(ProductData).getList();
+  products = inject(ProductData).getList();
 }

@@ -2,12 +2,21 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProductData } from './product-data';
 import { Product } from './product';
+import { HttpClient } from '@angular/common/http';
 
 describe('ProductData', () => {
   let service: ProductData;
+  let mockHttp: Partial<HttpClient>;
+  let api = 'https://stone-server.onrender.com/products';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    mockHttp = {
+      get: vi.fn(),
+      post: vi.fn(),
+    };
+    TestBed.configureTestingModule({
+      providers: [{ provide: HttpClient, useValue: mockHttp }],
+    });
     service = TestBed.inject(ProductData);
   });
 
@@ -15,9 +24,12 @@ describe('ProductData', () => {
     expect(service).toBeTruthy();
   });
 
-  it('"getList" should return product list', () => {
-    // given + when + then
-    expect(service.getList()[0].id).toBe(0);
+  it('"getList" should call correct api', () => {
+    // given + when
+    service.getList();
+
+    // then
+    expect(mockHttp.get).toHaveBeenCalledWith(api);
   });
 
   it('"addProduct" should add a product to the productlist', () => {
@@ -28,6 +40,6 @@ describe('ProductData', () => {
     service.addProduct(product);
 
     // then
-    expect(service.getList()[0]).toBe(product);
+    expect(mockHttp.post).toHaveBeenCalledWith(api, product);
   });
 });

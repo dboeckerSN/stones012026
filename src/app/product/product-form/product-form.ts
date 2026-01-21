@@ -56,13 +56,12 @@ export class ProductForm {
   save() {
     const formValue = this.productForm.value;
     if (this.productForm.valid && formValue.name && formValue.price && formValue.weight) {
-      const newProd: Product = {
-        id: this.id,
+      const newProd: Partial<Product> = {
         name: formValue.name,
         price: formValue.price,
         weight: formValue.weight,
       };
-      this.productData.addProduct(newProd);
+      this.productData.addProduct(newProd).subscribe();
       this.productForm.reset();
     }
   }

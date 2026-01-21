@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Product } from './product';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductData {
-  products: Product[] = [
+  private readonly api = 'https://stone-server.onrender.com/products';
+  private readonly http = inject(HttpClient);
+  /*products: Product[] = [
     {
       id: 0,
       name: 'nisi elit',
@@ -48,28 +52,30 @@ export class ProductData {
       price: 71.62,
       weight: 38,
     },
-  ];
+  ];*/
 
-  getList(): Product[] {
-    return this.products;
+  getList(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api);
   }
 
-  addProduct(newProduct: Product): void {
-    this.products.unshift(newProduct);
+  addProduct(newProduct: Partial<Product>): Observable<void> {
+    return this.http.post<void>(this.api, newProduct);
   }
 }
 
 export class MockProductData {
-  getList(): Product[] {
-    return [
+  getList(): Observable<Product[]> {
+    return of([
       {
         id: -1,
         name: 'test',
         price: 5,
         weight: 10,
       },
-    ];
+    ]);
   }
 
-  addProduct(product: Product): void {}
+  addProduct(product: Product): Observable<void> {
+    return of();
+  }
 }

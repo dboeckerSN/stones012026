@@ -24,6 +24,8 @@ describe('ProductList', () => {
 
   it('should load products from productData-service', () => {
     // given + when + then
-    expect(component.products[0].id).toBe(-1);
+    component.products.subscribe((products) => {
+      expect(products[0].id).toBe(-1);
+    });
   });
 });
