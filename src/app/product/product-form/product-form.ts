@@ -1,16 +1,25 @@
 import { Component, inject, output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Product } from '../product';
 import { CustomValidators } from '../../utils/validators/custom-validators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductData } from '../product-data';
 import { map } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'stn-product-form',
-  standalone: false,
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
 })
 export class ProductForm {
   saveProduct = output<Product>();
